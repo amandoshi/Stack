@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 //Stack Data Structure
 typedef struct urlStack
@@ -14,23 +15,27 @@ urlStack URL_STACK;
 
 //Function Declarations
 void push(char* url);
-char* peek(void);
+char* peak(void);
 void pop(void);
 
 int main(void)
 {
+	//Test
 	char* urls[5] = { "www.Youtube.com", "www.Google.com", "www.Netflix.com", "www.Apple.com", "www.StackOverFlow.com" };
 
+	//Populate stack 
 	for (int i = 0; i < 5; i++)
 	{
 		push(urls[i]);
-		printf("\nPush: %s", peek());
+		printf("\nPush, Peak: %s", peak());
 	}
+	printf("\n");
 
+	//Depopulate stack
 	for (int i = 0; i < 5; i++)
 	{
 		pop();
-		printf("\nPop: %s", peek());
+		printf("\nPop, Peak: %s", peak());
 	}
 
 	return 0;
@@ -67,15 +72,6 @@ void push(char* newUrl)
 	}
 }
 
-char* peek(void)
-{
-	if (URL_STACK.next != NULL)
-	{
-		return URL_STACK.next->url;
-	}
-	return "";
-}
-
 void pop(void)
 {
 	if (URL_STACK.next == NULL)
@@ -96,4 +92,13 @@ void pop(void)
 		free(tmpPtr);
 
 	}
+}
+
+char* peak(void)
+{
+	if (URL_STACK.next != NULL)
+	{
+		return URL_STACK.next->url;
+	}
+	return "";
 }
