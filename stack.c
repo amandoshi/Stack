@@ -15,8 +15,9 @@ urlStack URL_STACK;
 
 //Function Declarations
 void push(char* url);
-char* peak(void);
 void pop(void);
+char* peak(void);
+bool stack_empty(void);
 
 int main(void)
 {
@@ -43,7 +44,7 @@ int main(void)
 
 void push(char* newUrl)
 {
-	if (strcmp(URL_STACK.url, "") == false)
+	if (stack_empty())
 	{
 		strcpy_s(URL_STACK.url, strlen(newUrl)+1, newUrl);
 	}
@@ -102,3 +103,5 @@ char* peak(void)
 	}
 	return "";
 }
+
+bool stack_empty(void) { return strcmp(URL_STACK.url, "") == false; }
